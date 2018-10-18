@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:HolaMoviles" 
+             xmlns:mapas="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="HolaMoviles.miLocalizacion"
+             x:Name="Root">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Vertical">
+                <StackLayout.Margin>
+                    <OnPlatform iOS="30" Android="10" x:TypeArguments="Thickness" />
+                </StackLayout.Margin>
+            </StackLayout>
+            <ScrollView>
+            <ListView HorizontalOptions="Center" VerticalOptions="CenterAndExpand" HasUnevenRows="True"
+                  BindingContext="{Binding Source={x:Reference Root} }"
+                  ItemsSource="{Binding Path=Items}"
+                  IsRefreshing="{Binding IsBusy}"
+                  IsPullToRefreshEnabled="true"
+                  RefreshCommand="{Binding AgregarComando}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout BackgroundColor="#eee" Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="ip.png"></Image>
+                                        <Label Text="IP" TextColor="#f35e20" />
+                                        <Label Text="{Binding Mensaje}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="pais.png"></Image>
+                                        <Label Text="País" TextColor="#f35e20" />
+                                        <Label Text="{Binding Pais}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                                    </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="region.png"></Image>
+                                            <Label Text="Region" TextColor="#f35e20" />
+                                            <Label Text="{Binding Region}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                        <Image Source="ciudad.png"></Image>
+                                        <Label Text="Ciudad" TextColor="#f35e20" />
+                                        <Label Text="{Binding Ciudad}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="isp.png"></Image>
+                                        <Label Text="ISP" TextColor="#f35e20" />
+                                        <Label Text="{Binding ISP}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="zipcode.png"></Image>
+                                        <Label Text="Zip Code" TextColor="#f35e20" />
+                                        <Label Text="{Binding Zip}" HorizontalOptions="EndAndExpand" TextColor="#503026" />
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </ScrollView>
+            <mapas:Map x:Name="Mapa" MapType="Hybrid" HasZoomEnabled="true" HasScrollEnabled="true"
+                       VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="200" WidthRequest="200" />
+        </StackLayout>
+            
+    </ContentPage.Content>
+</ContentPage>
